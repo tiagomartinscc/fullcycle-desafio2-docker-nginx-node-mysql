@@ -27,9 +27,3 @@ docker-compose up -d
 ```bash
 http://localhost:8080
 ```
-
-
-### Limpar containers que estejam ativos 
-```bash
-docker rm $(docker ps -a -q) -f
-```

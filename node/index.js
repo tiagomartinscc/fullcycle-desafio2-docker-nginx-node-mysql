@@ -43,24 +43,24 @@ function selectPeople() {
     })
 }
 
-
-function returnList(people) {
-    return people.map(p => `<li>${p.name}</li>`);
+function printNames(names) {
+    let listOfNames = ``
+    for(let name of names) {
+        listOfNames = listOfNames + `<li>${name}</li>`
+    }
+    return listOfNames
 }
 
 app.get('/', async (req, res) => {
-    const [, selectRows] = await Promise.all([insertPeople('Tiago'), selectPeople()]);
+    const [, results] = await Promise.all([insertPeople('Tiago2'), selectPeople()]);
+    const names = results.map(result => result.name)
     
     const htmlToReturn = `
         <h1>Full Cycle</h1>
         <ul>
-            ${returnList(selectRows)}
+            ${printNames(names)}
         </ul>
     `;
-
-    // const htmlToReturn = `
-    //     <h1>Full Cycle</h1>
-    // `;    
 
     res.send(htmlToReturn);
 })
